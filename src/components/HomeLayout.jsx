@@ -35,7 +35,11 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = <Filters />;
+  const drawer = (
+    <>
+      <Filters />
+    </>
+  );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
