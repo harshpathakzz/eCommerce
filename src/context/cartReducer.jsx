@@ -10,7 +10,20 @@ export const cartReducer = (state, action) => {
         ...state,
         cart: state.cart.filter((c) => c.id !== action.payload.id),
       };
-
+    case "INCREASE_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item
+        ),
+      };
+    case "DECREASE_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id ? { ...item, qty: item.qty - 1 } : item
+        ),
+      };
     default:
       return state;
   }

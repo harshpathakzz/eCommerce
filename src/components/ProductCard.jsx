@@ -27,12 +27,10 @@ const ProductCard = ({ product }) => {
 
   const handleAddToCart = () => {
     dispatch({ type: "ADD_TO_CART", payload: product });
-    setAddedToCart(true);
   };
 
   const handleRemoveFromCart = () => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
-    setAddedToCart(false);
   };
   const handleGoToCart = () => {
     navigate("/cart");
