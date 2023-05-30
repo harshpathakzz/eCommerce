@@ -47,17 +47,17 @@ function ResponsiveDrawer(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar
+      {/* <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
-      >
-        <Toolbar>
-          <Header handleDrawerToggle={handleDrawerToggle} />
-        </Toolbar>
-      </AppBar>
+      > */}
+      {/* <Toolbar> */}
+      <Header handleDrawerToggle={handleDrawerToggle} />
+      {/* </Toolbar>
+      </AppBar> */}
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
