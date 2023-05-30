@@ -3,26 +3,11 @@ import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import SortIcon from "@mui/icons-material/Sort";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import StarIcon from "@mui/icons-material/Star";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Slider from "@mui/material/Slider";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Header from "./Header";
 import Products from "./Products";
-import { Menu } from "@mui/material";
 import Filters from "./Filters";
 
 const drawerWidth = 240;
@@ -47,17 +32,9 @@ function ResponsiveDrawer(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      {/* <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-        }}
-      > */}
-      {/* <Toolbar> */}
+
       <Header handleDrawerToggle={handleDrawerToggle} />
-      {/* </Toolbar>
-      </AppBar> */}
+
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}

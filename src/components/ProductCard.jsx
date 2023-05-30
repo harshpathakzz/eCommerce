@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
   CardMedia,
   Typography,
   Rating,
+  Button,
 } from "@mui/material";
 
 const ProductCard = ({ product }) => {
   const { name, price, image, category, inStock, fastDelivery, rating } =
     product;
+
+  const navigate = useNavigate();
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const handleAddToCart = () => {
+    setAddedToCart(true);
+  };
+
+  const handleGoToCart = () => {
+    navigate("/cart");
+  };
 
   return (
     <Card>
@@ -38,6 +51,15 @@ const ProductCard = ({ product }) => {
             readOnly
           />
         </Typography>
+        {addedToCart ? (
+          <Button variant="contained" color="primary" onClick={handleGoToCart}>
+            Go to Cart
+          </Button>
+        ) : (
+          <Button variant="contained" color="primary" onClick={handleAddToCart}>
+            Add to Cart
+          </Button>
+        )}
       </CardContent>
     </Card>
   );
