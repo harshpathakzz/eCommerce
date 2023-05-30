@@ -8,18 +8,32 @@ import {
   Rating,
   Button,
 } from "@mui/material";
+import { useCart } from "../context/CartContext";
 
 const ProductCard = ({ product }) => {
   const { name, price, image, category, inStock, fastDelivery, rating } =
     product;
+  const {
+    state: { cart },
+    dispatch,
+  } = useCart();
 
   const navigate = useNavigate();
-  const [addedToCart, setAddedToCart] = useState(false);
+  // const [addedToCart, setAddedToCart] = useState(false);
+
+  const isProductInCart = () => {
+    return cart.some((item) => item.id === product.id);
+  };
 
   const handleAddToCart = () => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
     setAddedToCart(true);
   };
 
+  const handleRemoveFromCart = () => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: product });
+    setAddedToCart(false);
+  };
   const handleGoToCart = () => {
     navigate("/cart");
   };
@@ -51,15 +65,31 @@ const ProductCard = ({ product }) => {
             readOnly
           />
         </Typography>
-        {addedToCart ? (
-          <Button variant="contained" color="primary" onClick={handleGoToCart}>
-            Go to Cart
-          </Button>
+        {inStock ? (
+          isProductInCart() ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleGoToCart}
+            >
+              Go to Cart
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </Button>
+          )
         ) : (
-          <Button variant="contained" color="primary" onClick={handleAddToCart}>
-            Add to Cart
+          <Button variant="contained" color="primary" disabled>
+            Out of Stock
           </Button>
         )}
+
+        <Button onClick={handleRemoveFromCart}>Remove from Cart</Button>
       </CardContent>
     </Card>
   );

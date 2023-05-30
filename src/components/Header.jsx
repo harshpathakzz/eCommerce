@@ -9,6 +9,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 const Search = styled("div")(({ theme }) => ({
@@ -51,6 +52,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header({ handleDrawerToggle }) {
+  const navigate = useNavigate();
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -85,7 +91,7 @@ export default function Header({ handleDrawerToggle }) {
             </Search>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={handleCartClick}>
             <ShoppingCartIcon />
           </IconButton>
         </Toolbar>

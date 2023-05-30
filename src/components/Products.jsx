@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "../context/Context";
+import { useCart } from "../context/CartContext";
 import ProductCard from "./ProductCard";
 import { Grid } from "@mui/material";
 import productsData from "../DB/products";
