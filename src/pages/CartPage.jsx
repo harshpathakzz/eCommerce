@@ -7,6 +7,7 @@ import {
   Box,
   Card,
   CardContent,
+  Divider,
 } from "@mui/material";
 import CartProductCard from "../components/CartProductCard";
 import CartHeader from "../components/CartHeader";
@@ -25,12 +26,29 @@ const Cart = () => {
     dispatch({ type: "DECREASE_QUANTITY", payload: product });
   };
 
+  const handleRemove = (product) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: product });
+  };
+
+  // Calculate the total price
+  const totalPrice = cart.reduce(
+    (total, product) => total + product.price * product.qty,
+    0
+  );
+
+  // Calculate the number of items in the cart
+  const numItems = cart.reduce((total, product) => total + product.qty, 0);
+
+  // Apply discount (if any)
+  const discount = 10; // Assuming a 10% discount
+  const discountedPrice = totalPrice - (totalPrice * discount) / 100;
+
   return (
     <Box height="100vh" width="100vw" sx={{ flexGrow: 1 }}>
       <CartHeader />
       <Box sx={{ flexGrow: 1, height: "calc(100vh - 64px)", width: "100vw" }}>
-        <Grid container sx={{ height: "100%" }}>
-          <Grid item xs={12} md={8}>
+        <Grid container sx={{ height: "100%" }} spacing={12}>
+          <Grid item xs={12} md={6}>
             <Typography variant="h6">Cart:</Typography>
             {cart.map((item) => (
               <CartProductCard
@@ -38,13 +56,39 @@ const Cart = () => {
                 product={item}
                 handleIncrement={handleIncrement}
                 handleDecrement={handleDecrement}
+                handleRemove={handleRemove}
               />
             ))}
           </Grid>
-          <Grid item xs={12} md={4} mt={2}>
-            <Card sx={{ textAlign: "center", height: "100%" }}>
+          <Grid item xs={12} md={4}>
+            <Card
+              sx={{
+                textAlign: "left",
+                height: "70%",
+                width: "100%",
+                marginTop: 5,
+              }}
+            >
               <CardContent>
-                <Typography variant="h6">Total Price:</Typography>
+                <Typography variant="h4">Price Details:</Typography>
+                <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
+                <Typography variant="body1" color="text.secondary">
+                  Price ({numItems}): ${totalPrice.toFixed(2)}
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  Discount price:{" "}
+                  <span style={{ color: "#3f51b5" }}>
+                    -${(totalPrice - discountedPrice).toFixed(2)}
+                  </span>
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  Delivery Charges: FREE
+                </Typography>
+                <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
+                <Typography variant="h6">
+                  Total Price: ${discountedPrice.toFixed(2)}
+                </Typography>
+                <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
                 <Button variant="contained" color="primary">
                   Checkout
                 </Button>
