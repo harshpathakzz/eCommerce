@@ -29,15 +29,12 @@ const ProductCard = ({ product }) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
 
-  const handleRemoveFromCart = () => {
-    dispatch({ type: "REMOVE_FROM_CART", payload: product });
-  };
   const handleGoToCart = () => {
     navigate("/cart");
   };
 
   return (
-    <Card>
+    <Card sx={{ width: 300 }}>
       <CardMedia component="img" height="140" image={image} alt={name} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -86,8 +83,6 @@ const ProductCard = ({ product }) => {
             Out of Stock
           </Button>
         )}
-
-        <Button onClick={handleRemoveFromCart}>Remove from Cart</Button>
       </CardContent>
     </Card>
   );
