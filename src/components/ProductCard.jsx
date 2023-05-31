@@ -11,7 +11,7 @@ import {
 import { useCart } from "../context/CartContext";
 
 const ProductCard = ({ product }) => {
-  const { name, price, image, category, inStock, fastDelivery, rating } =
+  const { id, name, price, image, category, inStock, fastDelivery, rating } =
     product;
   const {
     state: { cart },
