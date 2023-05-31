@@ -77,7 +77,7 @@ export default function Header({ handleDrawerToggle }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            MUI
+            Shopifyn
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Search>
