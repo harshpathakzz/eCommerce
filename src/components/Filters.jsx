@@ -43,10 +43,7 @@ const Filters = () => {
         <ListItem disablePadding>
           <ListItemText primary="Sort By:" />
         </ListItem>
-        <ListItemButton disablePadding>
-          <ListItemIcon>
-            <div></div>
-          </ListItemIcon>
+        <ListItemButton disablePadding sx={{ flexDirection: "row" }}>
           <Radio
             checked={sortBy === "price-low-to-high"}
             onChange={handleSortChange}
@@ -54,10 +51,7 @@ const Filters = () => {
           />
           <ListItemText primary="Price: Low to High" />
         </ListItemButton>
-        <ListItemButton disablePadding>
-          <ListItemIcon>
-            <div></div>
-          </ListItemIcon>
+        <ListItemButton disablePadding sx={{ flexDirection: "row" }}>
           <Radio
             checked={sortBy === "price-high-to-low"}
             onChange={handleSortChange}
@@ -65,10 +59,7 @@ const Filters = () => {
           />
           <ListItemText primary="Price: High to Low" />
         </ListItemButton>
-        <ListItemButton disablePadding>
-          <ListItemIcon>
-            <div></div>
-          </ListItemIcon>
+        <ListItemButton disablePadding sx={{ flexDirection: "row" }}>
           <Radio
             checked={sortBy === "rating"}
             onChange={handleSortChange}
@@ -99,7 +90,7 @@ const Filters = () => {
         <ListItem disablePadding>
           <ListItemText primary="Price Range" />
         </ListItem>
-        <ListItemButton disablePadding>
+        <ListItemButton disablePadding sx={{ flexDirection: "row" }}>
           <ListItemIcon>
             <AttachMoneyIcon />
           </ListItemIcon>
