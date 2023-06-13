@@ -106,8 +106,8 @@ const ProductCard = ({ product }) => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 300,
-            p: 3,
+            width: 450,
+            p: 4,
           }}
         >
           <Paper elevation={3} sx={{ p: 2 }}>
@@ -118,6 +118,7 @@ const ProductCard = ({ product }) => {
               variant="contained"
               color="primary"
               onClick={() => navigate("/login")}
+              sx={{ mt: 2 }}
             >
               Login
             </Button>
