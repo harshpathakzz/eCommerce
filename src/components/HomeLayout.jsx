@@ -11,7 +11,7 @@ import Filters from "./Filters";
 
 const drawerWidth = 240;
 
-function ResponsiveDrawer(props) {
+function HomeLayout(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -85,12 +85,4 @@ function ResponsiveDrawer(props) {
   );
 }
 
-ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
-
-export default ResponsiveDrawer;
+export default HomeLayout;

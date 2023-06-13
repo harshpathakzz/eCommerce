@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function CartHeader() {
   const navigate = useNavigate();
   const handleCartClick = () => {
     navigate("/cart");
