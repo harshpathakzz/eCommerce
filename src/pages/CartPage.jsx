@@ -30,6 +30,16 @@ const Cart = () => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
   };
 
+  const handleClearCart = async () => {
+    console.log(cart);
+    dispatch({ type: "CLEAR_CART" });
+  };
+  const handleCheckout = async () => {
+    try {
+    } catch (err) {
+      console.log(err);
+    }
+  };
   // Calculate the total price
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * product.qty,
@@ -89,7 +99,11 @@ const Cart = () => {
                   Total Price: ${discountedPrice.toFixed(2)}
                 </Typography>
                 <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
-                <Button variant="contained" color="primary">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleClearCart}
+                >
                   Checkout
                 </Button>
               </CardContent>

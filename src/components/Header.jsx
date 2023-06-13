@@ -10,6 +10,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
+import { handleLogout } from "../functions/authFunctions";
+import { Avatar, Button, MenuItem } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AvatarDropdown from "./AvatarDropdown";
 
 const drawerWidth = 240;
 const Search = styled("div")(({ theme }) => ({
@@ -53,6 +58,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Header({ handleDrawerToggle }) {
   const navigate = useNavigate();
+  const { isLoggedIn } = useUserAuth();
+  const handleLogoutClick = async () => {
+    try {
+      await handleLogout();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleCartClick = () => {
     navigate("/cart");
   };
@@ -94,6 +108,19 @@ export default function Header({ handleDrawerToggle }) {
           <IconButton color="inherit" onClick={handleCartClick}>
             <ShoppingCartIcon />
           </IconButton>
+          {isLoggedIn ? (
+            <React.Fragment>
+              <AvatarDropdown handleLogoutClick={handleLogoutClick} />
+            </React.Fragment>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
