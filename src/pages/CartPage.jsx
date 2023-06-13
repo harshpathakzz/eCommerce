@@ -11,8 +11,11 @@ import {
 } from "@mui/material";
 import CartProductCard from "../components/CartProductCard";
 import CartHeader from "../components/CartHeader";
+import { useNavigate } from "react-router-dom";
+import EmptyCartMessage from "../components/EmptyCartMessage";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const {
     state: { cart },
     dispatch,
@@ -30,16 +33,12 @@ const Cart = () => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
   };
 
-  const handleClearCart = async () => {
+  const handleCheckout = async () => {
     console.log(cart);
     dispatch({ type: "CLEAR_CART" });
+    navigate("/order-placed");
   };
-  const handleCheckout = async () => {
-    try {
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
   // Calculate the total price
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * product.qty,
@@ -57,59 +56,63 @@ const Cart = () => {
     <Box height="100vh" width="100vw" sx={{ flexGrow: 1 }}>
       <CartHeader />
       <Box sx={{ flexGrow: 1, height: "calc(100vh - 64px)", width: "100vw" }}>
-        <Grid container sx={{ height: "100%" }} spacing={12}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6">Cart:</Typography>
-            {cart.map((item) => (
-              <CartProductCard
-                key={item.id}
-                product={item}
-                handleIncrement={handleIncrement}
-                handleDecrement={handleDecrement}
-                handleRemove={handleRemove}
-              />
-            ))}
+        {cart.length === 0 ? (
+          <EmptyCartMessage />
+        ) : (
+          <Grid container sx={{ height: "100%" }} spacing={12}>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h6">Cart:</Typography>
+              {cart.map((item) => (
+                <CartProductCard
+                  key={item.id}
+                  product={item}
+                  handleIncrement={handleIncrement}
+                  handleDecrement={handleDecrement}
+                  handleRemove={handleRemove}
+                />
+              ))}
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Card
+                sx={{
+                  textAlign: "left",
+                  height: "70%",
+                  width: "100%",
+                  marginTop: 5,
+                }}
+              >
+                <CardContent>
+                  <Typography variant="h4">Price Details:</Typography>
+                  <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
+                  <Typography variant="body1" color="text.secondary">
+                    Price ({numItems}): ${totalPrice.toFixed(2)}
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary">
+                    Discount price:{" "}
+                    <span style={{ color: "#3f51b5" }}>
+                      -${(totalPrice - discountedPrice).toFixed(2)}
+                    </span>
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary">
+                    Delivery Charges: FREE
+                  </Typography>
+                  <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
+                  <Typography variant="h6">
+                    Total Price: ${discountedPrice.toFixed(2)}
+                  </Typography>
+                  <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleCheckout}
+                  >
+                    Checkout
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                textAlign: "left",
-                height: "70%",
-                width: "100%",
-                marginTop: 5,
-              }}
-            >
-              <CardContent>
-                <Typography variant="h4">Price Details:</Typography>
-                <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
-                <Typography variant="body1" color="text.secondary">
-                  Price ({numItems}): ${totalPrice.toFixed(2)}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  Discount price:{" "}
-                  <span style={{ color: "#3f51b5" }}>
-                    -${(totalPrice - discountedPrice).toFixed(2)}
-                  </span>
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  Delivery Charges: FREE
-                </Typography>
-                <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
-                <Typography variant="h6">
-                  Total Price: ${discountedPrice.toFixed(2)}
-                </Typography>
-                <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleClearCart}
-                >
-                  Checkout
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
+        )}
       </Box>
     </Box>
   );
