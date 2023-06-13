@@ -9,6 +9,7 @@ import {
   Button,
   Modal,
   Box,
+  Paper,
 } from "@mui/material";
 import { useCart } from "../context/CartContext";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -106,18 +107,19 @@ const ProductCard = ({ product }) => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 300,
-
             p: 3,
           }}
         >
-          <Typography variant="h6">Please Login to Add to Cart</Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </Button>
+          <Paper elevation={3} sx={{ p: 2 }}>
+            <Typography variant="h6">Please Login to Add to Cart</Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </Button>
+          </Paper>
         </Box>
       </Modal>
     </>
