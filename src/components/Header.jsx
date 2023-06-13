@@ -105,11 +105,11 @@ export default function Header({ handleDrawerToggle }) {
             </Search>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
+          <IconButton color="inherit" onClick={handleCartClick}>
+            <ShoppingCartIcon />
+          </IconButton>
           {isLoggedIn ? (
             <React.Fragment>
-              <IconButton color="inherit" onClick={handleCartClick}>
-                <ShoppingCartIcon />
-              </IconButton>
               <AvatarDropdown handleLogoutClick={handleLogoutClick} />
             </React.Fragment>
           ) : (
