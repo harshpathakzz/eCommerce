@@ -5,7 +5,7 @@ import {
   handleGoogleLogin,
   handleLogin,
   handleGuestLogin,
-} from "../functions/authFunctions"; // Import handleGuestLogin
+} from "../functions/authFunctions";
 import {
   Typography,
   TextField,
@@ -13,6 +13,7 @@ import {
   Grid,
   Container,
   IconButton,
+  Paper,
 } from "@mui/material";
 import { Google } from "@mui/icons-material";
 
@@ -91,61 +92,71 @@ const LoginPage = () => {
         minHeight: "100vh",
       }}
     >
-      <Grid container justifyContent="center" spacing={2} direction="column">
-        <Grid item>
-          <Typography variant="h1">Login</Typography>
-          {error && <Typography color="error">{error}</Typography>}
-        </Grid>
-        <Grid item>
-          <form onSubmit={handleSubmit}>
-            <Grid container spacing={2} direction="column">
-              <Grid item>
-                <TextField
-                  type="email"
-                  label="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  fullWidth
-                />
+      <Paper sx={{ padding: 2 }}>
+        <Grid container justifyContent="center" spacing={2} direction="column">
+          <Grid item>
+            <Typography variant="h4" align="center">
+              Login
+            </Typography>
+            {error && (
+              <Typography color="error" align="center">
+                {error}
+              </Typography>
+            )}
+          </Grid>
+          <Grid item>
+            <form onSubmit={handleSubmit}>
+              <Grid container spacing={2} direction="column">
+                <Grid item>
+                  <TextField
+                    type="email"
+                    label="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    type="password"
+                    label="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" type="submit" fullWidth>
+                    Login
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item>
-                <TextField
-                  type="password"
-                  label="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item>
-                <Button variant="contained" type="submit" fullWidth>
-                  Login
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
+            </form>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="contained"
+              onClick={handleGoogleSignIn}
+              startIcon={<Google />}
+              fullWidth
+            >
+              Sign in with Google
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" onClick={handleGuestSignIn} fullWidth>
+              Guest Login
+            </Button>
+          </Grid>
+          <Grid item>
+            <Typography align="center">
+              Don't have an account? <Link to="/signup">Sign Up</Link>
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Button
-            variant="contained"
-            onClick={handleGoogleSignIn}
-            startIcon={<Google />}
-            fullWidth
-          >
-            Sign in with Google
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained" onClick={handleGuestSignIn} fullWidth>
-            Guest Login
-          </Button>
-        </Grid>
-        <Grid item>
-          <Typography align="center">
-            Don't have an account? <Link to="/signup">Sign Up</Link>
-          </Typography>
-        </Grid>
-      </Grid>
+      </Paper>
     </Container>
   );
 };
