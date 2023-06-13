@@ -7,6 +7,7 @@ import SignUpPage from "./pages/SignUpPage";
 import { useUserAuth } from "./context/UserAuthContext";
 import Protected from "./components/Protected";
 import RequestLoginPage from "./pages/RequestLoginPage";
+import OrderPlacedPage from "./pages/OrderPlacedPage";
 
 function App() {
   const { isLoggedIn } = useUserAuth();
@@ -30,6 +31,8 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
 
           <Route path="/request-login" element={<RequestLoginPage />} />
+
+          <Route path="/order-placed" element={<OrderPlacedPage />} />
 
           <Route path="*" element={<h1> PAGE NOT FOUND</h1>} />
         </Routes>
