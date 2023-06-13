@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { handleGoogleLogin, handleLogin } from "../functions/authFunctions";
+import {
+  handleGoogleLogin,
+  handleLogin,
+  handleGuestLogin,
+} from "../functions/authFunctions"; // Import handleGuestLogin
 import {
   Typography,
   TextField,
@@ -68,6 +72,15 @@ const LoginPage = () => {
     }
   };
 
+  const handleGuestSignIn = async () => {
+    try {
+      await handleGuestLogin();
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <Container
       maxWidth="sm"
@@ -120,6 +133,11 @@ const LoginPage = () => {
             fullWidth
           >
             Sign in with Google
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" onClick={handleGuestSignIn} fullWidth>
+            Guest Login
           </Button>
         </Grid>
         <Grid item>

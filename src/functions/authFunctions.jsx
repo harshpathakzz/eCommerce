@@ -8,6 +8,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { addUserToCollection } from "./dbFunctions";
+import { signInAnonymously } from "firebase/auth";
+
 export const handleSignup = async (email, password) => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
@@ -36,6 +38,14 @@ export const handleGoogleLogin = async () => {
   const userCredential = await signInWithPopup(auth, provider);
   const user = userCredential.user;
   console.log("User logged in with Google:", user);
+  await addUserToCollection(user);
+  // ...
+};
+
+export const handleGuestLogin = async () => {
+  const userCredential = await signInAnonymously(auth);
+  const user = userCredential.user;
+  console.log("Guest user logged in:", user);
   await addUserToCollection(user);
   // ...
 };
