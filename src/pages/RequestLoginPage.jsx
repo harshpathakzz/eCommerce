@@ -22,7 +22,7 @@ const RequestLoginPage = () => {
       }}
     >
       <Paper elevation={3} sx={{ p: 2 }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h6" gutterBottom>
           Please login to continue
         </Typography>
         <Button variant="contained" onClick={() => navigate("/login")}>
