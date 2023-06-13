@@ -111,7 +111,9 @@ const ProductCard = ({ product }) => {
           }}
         >
           <Paper elevation={3} sx={{ p: 2 }}>
-            <Typography variant="h6">Please Login to Add to Cart</Typography>
+            <Typography variant="h6">
+              Please log in to add items to your cart
+            </Typography>
             <Button
               variant="contained"
               color="primary"
