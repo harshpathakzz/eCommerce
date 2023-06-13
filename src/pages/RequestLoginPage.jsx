@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Paper, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import { useUserAuth } from "../context/UserAuthContext";
 const RequestLoginPage = () => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useUserAuth();
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   return (
     <div
