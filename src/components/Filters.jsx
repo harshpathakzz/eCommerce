@@ -12,6 +12,7 @@ import {
   Toolbar,
   Typography,
   Divider,
+  Button,
 } from "@mui/material";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import StarIcon from "@mui/icons-material/Star";
@@ -32,6 +33,14 @@ const Filters = () => {
 
   const handlePriceChange = (event, newValue) => {
     setPriceRange(newValue);
+  };
+
+  const handleClearFilters = () => {
+    setSortBy("price-low-to-high");
+    setRating(0);
+    setPriceRange([0, 1000]);
+    setMinPrice(0);
+    setMaxPrice(1000);
   };
 
   return (
@@ -105,6 +114,10 @@ const Filters = () => {
           />
         </ListItemButton>
       </List>
+      <Divider />
+      <Button onClick={handleClearFilters} style={{ margin: 16 }}>
+        Clear Filters
+      </Button>
     </>
   );
 };
