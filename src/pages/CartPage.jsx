@@ -61,7 +61,6 @@ const CartPage = () => {
         ) : (
           <Grid container sx={{ height: "100%" }} spacing={2}>
             <Grid item xs={12} md={6}>
-              <Typography variant="h6">Cart:</Typography>
               {cart.map((product) => (
                 <CartProductCard
                   key={product.id}
