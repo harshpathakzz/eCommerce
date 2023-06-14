@@ -14,9 +14,15 @@ import {
 import { useCart } from "../context/CartContext";
 import { useUserAuth } from "../context/UserAuthContext";
 
+const truncateString = (str, maxLength) => {
+  if (str.length > maxLength) {
+    return str.substring(0, maxLength - 3) + "...";
+  }
+  return str;
+};
+
 const ProductCard = ({ product }) => {
-  const { id, name, price, image, category, inStock, fastDelivery, rating } =
-    product;
+  const { id, title, price, image, category, rating } = product;
   const {
     state: { cart },
     dispatch,
@@ -48,10 +54,10 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <Card sx={{ width: 300 }}>
-        <CardMedia component="img" height="140" image={image} alt={name} />
+        <CardMedia component="img" height="140" image={image} alt={title} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {name}
+            {truncateString(title, 20)}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             <strong>Price:</strong> ${price}
@@ -59,42 +65,36 @@ const ProductCard = ({ product }) => {
           <Typography variant="body2" color="text.secondary">
             <strong>Category:</strong> {category}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            <strong>Availability:</strong>{" "}
-            {inStock ? "In Stock" : "Out of Stock"}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            <strong>Fast Delivery:</strong> {fastDelivery ? "Yes" : "No"}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ display: "flex", alignItems: "center" }}
+          >
             <Rating
               name="half-rating-read"
-              value={rating}
+              value={rating.rate}
               precision={0.5}
               readOnly
             />
+            <span>({rating.count})</span>
           </Typography>
-          {inStock ? (
-            isProductInCart() ? (
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleGoToCart}
-              >
-                Go to Cart
-              </Button>
-            ) : (
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleAddToCart}
-              >
-                Add to Cart
-              </Button>
-            )
+          {isProductInCart() ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleGoToCart}
+              sx={{ mt: 2 }}
+            >
+              Go to Cart
+            </Button>
           ) : (
-            <Button variant="contained" color="primary" disabled>
-              Out of Stock
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleAddToCart}
+              sx={{ mt: 2 }}
+            >
+              Add to Cart
             </Button>
           )}
         </CardContent>

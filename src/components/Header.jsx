@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
 import { handleLogout } from "../functions/authFunctions";
 import { Avatar, Button, MenuItem } from "@mui/material";
-import LogoutIcon from "@mui/icons-material/Logout";
 import AvatarDropdown from "./AvatarDropdown";
+import { useSearch } from "../context/SearchContext";
 
 const drawerWidth = 240;
 const Search = styled("div")(({ theme }) => ({
@@ -57,6 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header({ handleDrawerToggle }) {
+  const { searchQuery, setSearchQuery } = useSearch();
   const navigate = useNavigate();
   const { isLoggedIn } = useUserAuth();
   const handleLogoutClick = async () => {
@@ -69,6 +70,9 @@ export default function Header({ handleDrawerToggle }) {
   };
   const handleCartClick = () => {
     navigate("/cart");
+  };
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
   };
 
   return (
@@ -101,6 +105,8 @@ export default function Header({ handleDrawerToggle }) {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
+                value={searchQuery}
+                onChange={handleSearchChange}
               />
             </Search>
           </Box>
