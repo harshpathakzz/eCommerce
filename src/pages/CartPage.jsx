@@ -77,7 +77,7 @@ const CartPage = () => {
                 sx={{
                   textAlign: "left",
                   width: "100%",
-                  marginTop: 5,
+                  marginTop: 6,
                 }}
               >
                 <CardContent>
