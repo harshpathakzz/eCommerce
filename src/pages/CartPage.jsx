@@ -14,7 +14,7 @@ import CartHeader from "../components/CartHeader";
 import { useNavigate } from "react-router-dom";
 import EmptyCartMessage from "../components/EmptyCartMessage";
 
-const Cart = () => {
+const CartPage = () => {
   const navigate = useNavigate();
   const {
     state: { cart },
@@ -59,7 +59,7 @@ const Cart = () => {
         {cart.length === 0 ? (
           <EmptyCartMessage />
         ) : (
-          <Grid container sx={{ height: "100%" }} spacing={12}>
+          <Grid container sx={{ height: "100%" }} spacing={2}>
             <Grid item xs={12} md={6}>
               <Typography variant="h6">Cart:</Typography>
               {cart.map((product) => (
@@ -76,9 +76,8 @@ const Cart = () => {
               <Card
                 sx={{
                   textAlign: "left",
-                  height: "70%",
                   width: "100%",
-                  marginTop: 5,
+                  marginTop: 6,
                 }}
               >
                 <CardContent>
@@ -118,4 +117,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;
