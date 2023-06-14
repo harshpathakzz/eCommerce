@@ -7,7 +7,12 @@ export const filterReducer = (state, action) => {
     case "SET_PRICE_RANGE":
       return { ...state, priceRange: action.payload };
     case "CLEAR_FILTERS":
-      return initialState;
+      return {
+        ...state,
+        sortBy: "price-low-to-high",
+        rating: 0,
+        priceRange: [0, 1000],
+      };
     default:
       return state;
   }
