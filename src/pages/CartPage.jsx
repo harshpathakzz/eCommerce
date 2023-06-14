@@ -62,10 +62,10 @@ const Cart = () => {
           <Grid container sx={{ height: "100%" }} spacing={12}>
             <Grid item xs={12} md={6}>
               <Typography variant="h6">Cart:</Typography>
-              {cart.map((item) => (
+              {cart.map((product) => (
                 <CartProductCard
-                  key={item.id}
-                  product={item}
+                  key={product.id}
+                  product={product}
                   handleIncrement={handleIncrement}
                   handleDecrement={handleDecrement}
                   handleRemove={handleRemove}

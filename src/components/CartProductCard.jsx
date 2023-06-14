@@ -16,14 +16,14 @@ const CartProductCard = ({
   handleRemove,
 }) => {
   // Calculate subtotal for the product
-  const subtotal = product.price * product.qty;
+  const subtotal = (product.price * product.qty).toFixed(2);
 
   return (
-    <Card key={product.id} sx={{ display: "flex", mb: 2 }}>
+    <Card key={product.id} sx={{ display: "flex", m: 2, p: 2 }}>
       <CardMedia
         component="img"
         src={product.image}
-        alt={product.name}
+        alt={product.title}
         sx={{ width: 200, objectFit: "cover" }}
       />
       <CardContent sx={{ flex: 1 }}>
@@ -34,7 +34,7 @@ const CartProductCard = ({
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="h6">{product.name}</Typography>
+          <Typography variant="h6">{product.title}</Typography>
           <IconButton
             aria-label="remove"
             size="small"
