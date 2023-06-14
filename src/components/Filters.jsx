@@ -17,30 +17,26 @@ import {
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
+import { useFilter } from "../context/FilterContext";
 
 const Filters = () => {
-  const [sortBy, setSortBy] = useState("price-low-to-high");
-  const [rating, setRating] = useState(0);
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const { state, dispatch } = useFilter();
+  const { sortBy, rating, priceRange } = state;
 
   const handleSortChange = (event) => {
-    setSortBy(event.target.value);
+    dispatch({ type: "SET_SORT_BY", payload: event.target.value });
   };
 
   const handleRatingChange = (event, newValue) => {
-    setRating(newValue);
+    dispatch({ type: "SET_RATING", payload: newValue });
   };
 
   const handlePriceChange = (event, newValue) => {
-    setPriceRange(newValue);
+    dispatch({ type: "SET_PRICE_RANGE", payload: newValue });
   };
 
   const handleClearFilters = () => {
-    setSortBy("price-low-to-high");
-    setRating(0);
-    setPriceRange([0, 1000]);
-    setMinPrice(0);
-    setMaxPrice(1000);
+    dispatch({ type: "CLEAR_FILTERS" });
   };
 
   return (
