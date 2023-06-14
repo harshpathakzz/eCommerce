@@ -7,6 +7,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import { UserAuthProvider } from "./context/UserAuthContext.jsx";
+import { FilterProvider } from "./context/FilterContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <CssBaseline />
       <UserAuthProvider>
         <CartProvider>
-          <App />
+          <FilterProvider>
+            <App />
+          </FilterProvider>
         </CartProvider>
       </UserAuthProvider>
     </ThemeProvider>
