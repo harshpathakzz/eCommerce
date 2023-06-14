@@ -4,10 +4,11 @@ import ProductCard from "./ProductCard";
 import { Grid, Button, Typography, Pagination, Paper } from "@mui/material";
 import productsData from "../DB/products";
 import { useFilter } from "../context/FilterContext";
-
-const Home = () => {
+import { useSearch } from "../context/SearchContext";
+const Products = () => {
   const { state } = useCart();
   const { sortBy, rating, priceRange } = useFilter().state;
+  const { searchQuery } = useSearch();
 
   // Apply the filters to the products
   const filteredProducts = productsData.filter((product) => {
@@ -28,7 +29,17 @@ const Home = () => {
     const priceRangeCondition =
       product.price >= priceRange[0] && product.price <= priceRange[1];
 
-    return sortCondition && ratingCondition && priceRangeCondition;
+    // Apply search query filter
+    const searchQueryCondition = product.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    return (
+      sortCondition &&
+      ratingCondition &&
+      priceRangeCondition &&
+      searchQueryCondition
+    );
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -111,4 +122,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Products;
