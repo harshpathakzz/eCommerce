@@ -14,7 +14,7 @@ import CartHeader from "../components/CartHeader";
 import { useNavigate } from "react-router-dom";
 import EmptyCartMessage from "../components/EmptyCartMessage";
 
-const Cart = () => {
+const CartPage = () => {
   const navigate = useNavigate();
   const {
     state: { cart },
@@ -117,4 +117,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;
