@@ -48,28 +48,38 @@ const Filters = () => {
         <ListItem disablePadding>
           <ListItemText primary="Sort By:" />
         </ListItem>
-        <ListItemButton disablePadding sx={{ flexDirection: "row" }}>
+        <ListItemButton
+          disablePadding
+          sx={{ flexDirection: "row", width: "100%" }}
+          onClick={() =>
+            handleSortChange({ target: { value: "price-low-to-high" } })
+          }
+        >
           <Radio
             checked={sortBy === "price-low-to-high"}
-            onChange={handleSortChange}
             value="price-low-to-high"
           />
           <ListItemText primary="Price: Low to High" />
         </ListItemButton>
-        <ListItemButton disablePadding sx={{ flexDirection: "row" }}>
+        <ListItemButton
+          disablePadding
+          sx={{ flexDirection: "row", width: "100%" }}
+          onClick={() =>
+            handleSortChange({ target: { value: "price-high-to-low" } })
+          }
+        >
           <Radio
             checked={sortBy === "price-high-to-low"}
-            onChange={handleSortChange}
             value="price-high-to-low"
           />
           <ListItemText primary="Price: High to Low" />
         </ListItemButton>
-        <ListItemButton disablePadding sx={{ flexDirection: "row" }}>
-          <Radio
-            checked={sortBy === "rating"}
-            onChange={handleSortChange}
-            value="rating"
-          />
+        <ListItemButton
+          disablePadding
+          sx={{ flexDirection: "row", width: "100%" }}
+          onClick={() => handleSortChange({ target: { value: "rating" } })}
+        >
+          <Radio checked={sortBy === "rating"} value="rating" />
           <ListItemText primary="Rating" />
         </ListItemButton>
       </List>
