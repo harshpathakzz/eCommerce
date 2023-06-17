@@ -42,7 +42,12 @@ const Filters = () => {
   return (
     <>
       <Toolbar />
-      <Typography variant="h3">Filter by:</Typography>
+      <Typography
+        variant="h5"
+        sx={{ marginBottom: 2, marginLeft: 2, fontWeight: "bold" }}
+      >
+        Filter by:
+      </Typography>
       <Divider />
       <List style={{ paddingLeft: 16, paddingRight: 16 }}>
         <ListItem disablePadding>
