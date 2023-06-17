@@ -18,10 +18,10 @@ export default function CartHeader() {
       <AppBar position="fixed">
         <Toolbar>
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="div"
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, cursor: "pointer" }}
             onClick={() => navigate("/")}
           >
             Shopifyn
